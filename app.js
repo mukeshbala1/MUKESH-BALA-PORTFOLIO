@@ -258,7 +258,7 @@ const projectData = {
     short: 'Full-stack e-commerce web application.',
     long:  'Cartify is a full-stack e-commerce web application where users can browse products, add items to cart, manage orders, and authenticate securely. Built with modern technologies to provide a smooth and responsive online shopping experience.',
     tech:  ['React','Node.js','Express','MongoDB','JWT'],
-    link:  'https://github.com/mukeshbala143/Cartify.git'
+    link:  'https://cartify-sigma.vercel.app'
   },
   cyraAnalytics: {
     tag:   'Analytics',
@@ -283,6 +283,14 @@ const projectData = {
   long:  'A full-stack multiplayer sports auction platform (IPL, Kabaddi, Football). Features include live socket-based bidding, synchronized server-side timers to prevent desync, a female AI voice announcer for live bids, smart purse/overseas cap enforcement, and Gemini AI-powered post-auction squad analysis with Excel export.',
   tech:  ['React', 'Node.js', 'Socket.io', 'Supabase', 'Tailwind CSS'],
   link:  'https://auctionarena.org' 
+},
+  matrimonyApp: {
+  tag:   'Full-Stack App',
+  title: 'Matrimony Matchmaking App',
+  short: 'A comprehensive matchmaking platform featuring real-time online chat and connection interest-sending.',
+  long:  'A fully-featured matchmaking application designed for seamless partner discovery. Features include dynamic user profiles, a dedicated online chat system for direct communication, the ability to send and receive connection "interests", and activity tracking. The modular backend is powered by Node.js with Cloudinary for robust media management, while the responsive frontend is custom-built with pure HTML, CSS, and JavaScript.',
+  tech:  ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Cloudinary', 'RESTful APIs'],
+  link:  'https://matrimony-app-beryl.vercel.app' 
 }
 };
 
