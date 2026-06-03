@@ -488,6 +488,14 @@ const certsData = [
   { category:'AI / ML', title:'AI-ML Virtual Internship', provider:'AICTE × Google for Developers × EduSkills', color:'#5f969f',
     description:'Completed 10-week AICTE Virtual Internship in Artificial Intelligence & Machine Learning, supported by Google for Developers India Edu Program. Achieved Grade O (Outstanding: 90–100). Hosted at GIET University, January–March 2026.',
     technologies:['Artificial Intelligence','Machine Learning','Python','Deep Learning','Google for Developers'], linkedinUrl:'https://www.linkedin.com/posts/activity-7438811853989969920-kOGn?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },
+
+  { category:'Data Science', title:'Data Analytics with Python', provider:'NPTEL × IIT Roorkee', color:'#6e5431',
+    description:'Successfully completed the 12-week course "Data Analytics with Python" funded by the Ministry of Education, Govt. of India. Achieved a consolidated score of 55% with 4 recommended credits. January–April 2026.',
+    technologies:['Python', 'Data Analytics', 'NPTEL', 'Swayam'], linkedinUrl:'https://www.linkedin.com/posts/mukeshbala143_nptel-iitroorkee-python-share-7468004433218543616-SrY2/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },
+
+  { category:'Generative AI', title:'Prompt Engineering', provider:'Infosys Springboard', color:'#34627c',
+    description:'Successfully completed the "Prompt Engineering" course through Infosys Springboard. Acquired skills in crafting effective prompts for Generative AI applications. Issued on May 27, 2026.',
+    technologies:['Prompt Engineering', 'Generative AI', 'Infosys Springboard', 'LLMs'], linkedinUrl:'https://www.linkedin.com/posts/mukeshbala143_infosysspringboard-promptengineering-generativeai-share-7468004822730895360-eT1j/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },  
 ];
 
 function openCertModal(index) {
