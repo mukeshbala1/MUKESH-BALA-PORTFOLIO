@@ -28,7 +28,7 @@
   /* Carousel */
   --cw: 200px;
   --ch: 300px;
-  --cr: 620px;
+  --cr: 800px;
 }
 
 html { scroll-behavior:smooth; }
@@ -1009,14 +1009,14 @@ body:hover .cursor-follower { opacity:1; }
   position: absolute;
   width: var(--cw);
   height: var(--ch);
-  transform: rotateY(calc(var(--i) * 20deg)) translateZ(var(--cr));
+  transform: rotateY(calc(var(--i) * 16.36deg)) translateZ(var(--cr));
   background: rgba(12,16,25,0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.07);
   border-radius: 16px;
   cursor: none;
-  -webkit-box-reflect: below 10px linear-gradient(transparent 60%,rgba(0,0,0,0.06));
+  -webkit-box-reflect: below 10px linear-gradient(transparent 60%, rgba(0,0,0,0.06));
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
@@ -1416,7 +1416,7 @@ body:hover .cursor-follower { opacity:1; }
    RESPONSIVE
    ================================================================ */
 @media (max-width: 1024px) {
-  :root { --cr:440px; }
+  :root { --cr:800px; }
   .about-grid { grid-template-columns:1fr; gap:3.5rem; }
   .contact-grid { grid-template-columns:1fr; gap:3rem; }
 }

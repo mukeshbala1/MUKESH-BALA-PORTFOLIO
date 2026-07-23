@@ -495,7 +495,17 @@ const certsData = [
 
   { category:'Generative AI', title:'Prompt Engineering', provider:'Infosys Springboard', color:'#34627c',
     description:'Successfully completed the "Prompt Engineering" course through Infosys Springboard. Acquired skills in crafting effective prompts for Generative AI applications. Issued on May 27, 2026.',
-    technologies:['Prompt Engineering', 'Generative AI', 'Infosys Springboard', 'LLMs'], linkedinUrl:'https://www.linkedin.com/posts/mukeshbala143_infosysspringboard-promptengineering-generativeai-share-7468004822730895360-eT1j/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },  
+    technologies:['Prompt Engineering', 'Generative AI', 'Infosys Springboard', 'LLMs'], linkedinUrl:'https://www.linkedin.com/posts/mukeshbala143_infosysspringboard-promptengineering-generativeai-share-7468004822730895360-eT1j/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' }, 
+    
+  {
+  category: 'Web Development',title: 'MERN Full Stack Development with Project',provider: 'AICTE × EduSkills × National Internship Portal',color: '#4b8025',
+  description: 'Successfully completed the 8-week MERN Full Stack Development with Project Virtual Internship organized by AICTE and EduSkills. Gained hands-on experience in building full-stack web applications using the MERN stack and working on real-world development projects.',
+  technologies: ['MongoDB','Express.js','React.js','Node.js','JavaScript','REST API'], linkedinUrl: 'https://www.linkedin.com/posts/mukeshbala143_excited-to-share-another-milestone-in-share-7485959624450523137-CTCy/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE'},
+  
+  {
+  category: 'UI/UX Design',title: 'Design Fundamentals with AI',provider: 'Adobe × YuWaah × UNICEF',color: '#FF0000',
+  description: 'Successfully completed the Design Fundamentals with AI course offered by Adobe through the YuWaah Passport to Earning initiative in collaboration with UNICEF. Achieved a score of 97.5% while learning AI-assisted design, creativity, and design thinking.',
+  technologies: [ 'Adobe', 'AI Design', 'UI/UX Design', 'Design Thinking', 'Generative AI'], linkedinUrl: 'https://www.linkedin.com/posts/mukeshbala143_adobe-ai-design-share-7482875077496131584-AyFI/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE'},
 ];
 
 function openCertModal(index) {
