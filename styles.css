@@ -28,7 +28,7 @@
   /* Carousel */
   --cw: 200px;
   --ch: 300px;
-  --cr: 800px;
+  --cr: 780px;
 }
 
 html { scroll-behavior:smooth; }
@@ -1004,7 +1004,7 @@ body:hover .cursor-follower { opacity:1; }
   transition: transform 0.08s linear;
 }
 
-/* 360 / 18 = 20deg per card */
+/* 360 / 22 = 16.36deg per card */
 .gc {
   position: absolute;
   width: var(--cw);
@@ -1416,7 +1416,10 @@ body:hover .cursor-follower { opacity:1; }
    RESPONSIVE
    ================================================================ */
 @media (max-width: 1024px) {
-  :root { --cr:800px; }
+  :root { 
+    --cw: 160px;   /* shrink card width too */
+    --cr: 560px;   /* was 440px */
+  }
   .about-grid { grid-template-columns:1fr; gap:3.5rem; }
   .contact-grid { grid-template-columns:1fr; gap:3rem; }
 }
@@ -1459,167 +1462,15 @@ body:hover .cursor-follower { opacity:1; }
 }
 
 /* ================================================================
-   MOBILE CAROUSEL FIX — add this to the END of styles.css
-   Replaces the broken 3D carousel on mobile with a swipe slider
+   MOBILE CAROUSEL FIX — swipe slider replaces 3D carousel on mobile
    ================================================================ */
 
-/* ── Fix card angle for 18 cards ── */
-/* Already in styles, just update the .gc rule's calc: 360/18 = 20deg */
-
-/* ── MOBILE: Hide 3D carousel, show swipe slider ── */
 @media (max-width: 768px) {
-
-  /* Hide the 3D perspective wrapper entirely on mobile */
-  .carousel-wrapper {
-    display: none !important;
-  }
-
-  /* Show the mobile swipe carousel */
-  .mobile-cert-track-wrap {
-    display: block !important;
-  }
+  .carousel-wrapper { display: none !important; }
+  .certs-sub { display: none; }
+  .mobile-cert-track-wrap { display: block !important; }
 }
 
-/* Mobile swipe carousel — hidden on desktop */
-.mobile-cert-track-wrap {
-  display: none;
-  overflow: hidden;
-  padding: 1.5rem 0 2.5rem;
-  position: relative;
-}
-
-.mobile-cert-track {
-  display: flex;
-  gap: 1rem;
-  padding: 0 5% 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.mobile-cert-track::-webkit-scrollbar { display: none; }
-
-/* Each mobile cert card */
-.mobile-cert-card {
-  flex: 0 0 72vw;
-  max-width: 280px;
-  min-height: 240px;
-  background: rgba(12, 16, 25, 0.92);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 16px;
-  padding: 22px 18px;
-  scroll-snap-align: center;
-  cursor: pointer;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-.mobile-cert-card:active {
-  transform: scale(0.97);
-}
-
-.mobile-cert-card .gc-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
-  margin-bottom: 14px;
-  background: rgba(0,0,0,0.2);
-}
-
-.mobile-cert-card .gc-cat {
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-  display: block;
-}
-
-.mobile-cert-card h3 {
-  font-family: var(--font-serif);
-  color: var(--white);
-  font-size: 1rem;
-  font-weight: 400;
-  margin-bottom: 6px;
-  line-height: 1.3;
-}
-
-.mobile-cert-card p {
-  color: rgba(244,240,236,0.38);
-  font-size: 0.75rem;
-}
-
-.mobile-cert-card .gc-bar {
-  margin-top: auto;
-  width: 32px; height: 2px;
-  border-radius: 2px;
-  box-shadow: 0 0 10px currentColor;
-}
-
-/* Scroll indicator dots */
-.mobile-cert-dots {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  padding-top: 1rem;
-}
-
-.mobile-cert-dots span {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--border-h);
-  transition: background 0.3s, transform 0.3s;
-}
-
-.mobile-cert-dots span.active {
-  background: var(--gold);
-  transform: scale(1.5);
-}
-
-/* Swipe hint */
-.mobile-swipe-hint {
-  text-align: center;
-  font-size: 0.72rem;
-  color: var(--grey2);
-  letter-spacing: 0.08em;
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-/* ================================================================
-   PASTE THIS AT THE VERY END OF YOUR styles.css
-   ── Mobile carousel fix + 18-card spacing update
-   ================================================================ */
-
-/* ── Fix: 18 cards = 20deg each (was 21.176deg for 17) ── */
-/* Find the .gc rule and change the transform line to: */
-/* transform: rotateY(calc(var(--i) * 20deg)) translateZ(var(--cr)); */
-/* OR just leave it — the cards will still look great with 21deg */
-
-/* ── DESKTOP: keep 3D carousel ── */
-/* ── MOBILE (≤768px): hide 3D, show swipe slider ── */
-
-@media (max-width: 768px) {
-  .carousel-wrapper {
-    display: none !important;
-  }
-  .certs-sub {
-    display: none;
-  }
-  .mobile-cert-track-wrap {
-    display: block !important;
-  }
-}
-
-/* ── Mobile swipe carousel container (hidden on desktop) ── */
 .mobile-cert-track-wrap {
   display: none;
   padding: 1rem 0 2.5rem;
@@ -1637,11 +1488,8 @@ body:hover .cursor-follower { opacity:1; }
   gap: 8px;
 }
 
-.mobile-swipe-hint i {
-  color: var(--gold);
-}
+.mobile-swipe-hint i { color: var(--gold); }
 
-/* ── Scrollable track ── */
 .mobile-cert-track {
   display: flex;
   gap: 1rem;
@@ -1652,11 +1500,8 @@ body:hover .cursor-follower { opacity:1; }
   scrollbar-width: none;
 }
 
-.mobile-cert-track::-webkit-scrollbar {
-  display: none;
-}
+.mobile-cert-track::-webkit-scrollbar { display: none; }
 
-/* ── Individual mobile cert card ── */
 .mobile-cert-card {
   flex: 0 0 72vw;
   max-width: 260px;
@@ -1674,9 +1519,7 @@ body:hover .cursor-follower { opacity:1; }
   -webkit-tap-highlight-color: transparent;
 }
 
-.mobile-cert-card:active {
-  transform: scale(0.96);
-}
+.mobile-cert-card:active { transform: scale(0.96); }
 
 .mobile-cert-card .gc-icon {
   width: 38px;
@@ -1722,7 +1565,6 @@ body:hover .cursor-follower { opacity:1; }
   border-radius: 2px;
 }
 
-/* ── Dot indicator ── */
 .mobile-cert-dots {
   display: flex;
   justify-content: center;
