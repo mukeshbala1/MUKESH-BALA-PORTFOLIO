@@ -10,6 +10,16 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved || (prefersDark ? 'dark' : 'dark');
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
 </head>
 <body>
 
@@ -63,9 +73,11 @@
       <button class="mm-theme-btn" id="mmThemeToggle" aria-label="Toggle theme">
         <i class="fas fa-moon theme-icon-dark"></i>
         <i class="fas fa-sun theme-icon-light"></i>
-        <span>Switch Theme</span>
+        <span class="theme-label">Switch Theme</span>
       </button>
-      <a href="Resume.pdf" download class="mm-cta">Download Resume</a>
+      <a href="Resume.pdf" download class="nav-cta mm-cta">
+        <i class="fas fa-arrow-down"></i> Download Resume
+      </a>
     </div>
   </div>
 
@@ -294,37 +306,259 @@
     </div>
   </div>
 
-  <!-- ═══════════════════ 3D INFINITE HELIX RIBBON ═══════════════════ -->
+  <!-- ═══════════════════ CERTIFICATIONS CAROUSEL ═══════════════════ -->
   <section id="certs" class="section certs-section">
-    <div class="container container-title-certs">
-      <p class="section-label">// Verified Credentials &amp; Achievements</p>
-      <h2 class="section-h2">22 Milestones<br>&amp; <em>3D Helix Ribbon</em></h2>
-      <p class="certs-sub">Drag, swipe, or scroll vertically &amp; horizontally — <span class="drag-hint-text"><i class="fas fa-arrows-up-down-left-right"></i> navigate the 3D infinite spiral</span></p>
+    <div class="container-title-certs">
+      <p class="section-label">// Achievements &amp; Certifications</p>
+      <h2 class="section-h2">22 Milestones<br>&amp; <em>Counting</em></h2>
+      <p class="certs-sub">Drag to explore — <span class="drag-hint-text"><i class="fas fa-hand-pointer"></i> rotate the gallery</span></p>
     </div>
 
-    <!-- 3D Helix Stage Container -->
-    <div class="helix-stage-wrap" id="helixStageWrap">
-      <!-- Interactive HUD Controls -->
-      <div class="helix-hud">
-        <button class="helix-hud-btn" id="helixPrev" aria-label="Previous Milestone" title="Previous"><i class="fas fa-chevron-left"></i></button>
-        <button class="helix-hud-btn" id="helixTogglePlay" aria-label="Pause or Play Rotation" title="Pause / Play">
-          <i class="fas fa-pause" id="helixPlayIcon"></i> <span class="hud-text" id="helixPlayText">Auto Orbit</span>
-        </button>
-        <button class="helix-hud-btn" id="helixNext" aria-label="Next Milestone" title="Next"><i class="fas fa-chevron-right"></i></button>
-        <button class="helix-hud-btn" id="helixReset" aria-label="Reset View" title="Reset View"><i class="fas fa-arrows-rotate"></i></button>
-      </div>
+    <!-- ── DESKTOP: 3D Rotating Carousel ── -->
+    <div class="carousel-wrapper">
+      <div class="void-container" id="drag-container">
+        <div class="carousel-pivot" id="pivot">
 
-      <div class="helix-viewport" id="helixViewport">
-        <div class="helix-pivot" id="helixPivot">
-          <!-- 22 Cards dynamically positioned along the 3D spiral by app.js -->
+          <div class="gc" style="--i:1;  --clr:#c084fc;" onclick="openCertModal(0)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">WEB DEV</span>
+              <h3>React Portfolio Bootcamp</h3>
+              <p>DevTown × Microsoft</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:2;  --clr:#60a5fa;" onclick="openCertModal(1)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">HACKATHON</span>
+              <h3>Smart India Hackathon</h3>
+              <p>GIET University</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:3;  --clr:#f87171;" onclick="openCertModal(2)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">PROGRAMMING</span>
+              <h3>C++ and SQL</h3>
+              <p>Data Infotech</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:4;  --clr:#38bdf8;" onclick="openCertModal(3)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">CYBER SECURITY</span>
+              <h3>Cyber Security Workshop</h3>
+              <p>Cyberyaan × GIET</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:5;  --clr:#fb923c;" onclick="openCertModal(4)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">HACKATHON</span>
+              <h3>Hacknovation 2.0</h3>
+              <p>GIET University</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:6;  --clr:#f97316;" onclick="openCertModal(5)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">AI / CLOUD</span>
+              <h3>Oracle Cloud AI Foundations</h3>
+              <p>Oracle University</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:7;  --clr:#fbbf24;" onclick="openCertModal(6)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">IOT</span>
+              <h3>Industry 4.0 &amp; IoT</h3>
+              <p>NPTEL</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:8;  --clr:#4ade80;" onclick="openCertModal(7)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">PYTHON</span>
+              <h3>Joy of Computing Python</h3>
+              <p>NPTEL</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:9;  --clr:#e879f9;" onclick="openCertModal(8)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">PROJECT</span>
+              <h3>Projectathon — 1st Prize</h3>
+              <p>GIET University</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:10; --clr:#2dd4bf;" onclick="openCertModal(9)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">INTERNSHIP</span>
+              <h3>Industry Exposure Internship</h3>
+              <p>Hebble Academy</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:11; --clr:#22d3ee;" onclick="openCertModal(10)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">DATA ANALYTICS</span>
+              <h3>Remote Sensing Analytics</h3>
+              <p>ISRO — IIRS</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:12; --clr:#f59e0b;" onclick="openCertModal(11)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">CLOUD</span>
+              <h3>AWS Developer Training</h3>
+              <p>Infosys Springboard</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:13; --clr:#818cf8;" onclick="openCertModal(12)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">BUSINESS</span>
+              <h3>Intro to Corporate Actions</h3>
+              <p>TCS iON</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:14; --clr:#f43f5e;" onclick="openCertModal(13)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">PROGRAMMING</span>
+              <h3>Python + MySQL Internship</h3>
+              <p>GIET University</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:15; --clr:#ec4899;" onclick="openCertModal(14)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">DATA SCIENCE</span>
+              <h3>Data Science 101</h3>
+              <p>IBM SkillsBuild</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:16; --clr:#34d399;" onclick="openCertModal(15)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">DATA ANALYTICS</span>
+              <h3>Data Analytics Simulation</h3>
+              <p>Deloitte (Forage)</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <div class="gc" style="--i:17; --clr:#a3e635;" onclick="openCertModal(16)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">DESIGN &amp; UX</span>
+              <h3>UX Design Foundations</h3>
+              <p>Google (Coursera)</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <!-- ── NEW: Card 18 — AI-ML Virtual Internship ── -->
+          <div class="gc" style="--i:18; --clr:#5f969f;" onclick="openCertModal(17)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-star"></i></div>
+              <span class="gc-cat">AI / ML</span>
+              <h3>AI-ML Virtual Internship</h3>
+              <p>AICTE × Google × EduSkills</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <!-- NPTEL Certificate -->
+          <div class="gc" style="--i:19; --clr:#6e5431;" onclick="openCertModal(18)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-chart-bar"></i></div>
+              <span class="gc-cat">Data Science</span>
+              <h3>Data Analytics with Python</h3>
+              <p>NPTEL × IIT Roorkee</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <!-- Infosys Certificate -->
+          <div class="gc" style="--i:20; --clr:#34627c;" onclick="openCertModal(19)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-robot"></i></div>
+              <span class="gc-cat">Generative AI</span>
+              <h3>Prompt Engineering</h3>
+              <p>Infosys Springboard</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <!-- MERN Full Stack Development -->
+          <div class="gc" style="--i:21; --clr:#4b8025;" onclick="openCertModal(20)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-code"></i></div>
+              <span class="gc-cat">WEB DEVELOPMENT</span>
+              <h3>MERN Full Stack Development</h3>
+              <p>AICTE × EduSkills</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
+          <!-- Design Fundamentals with AI -->
+          <div class="gc" style="--i:22; --clr:#FF0000;" onclick="openCertModal(21)">
+            <div class="gc-inner">
+              <div class="gc-icon"><i class="fas fa-palette"></i></div>
+              <span class="gc-cat">UI/UX DESIGN</span>
+              <h3>Design Fundamentals with AI</h3>
+              <p>Adobe × YuWaah × UNICEF</p>
+              <div class="gc-bar"></div>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <div class="helix-status-bar">
-        <span class="helix-indicator" id="helixIndicator">Milestone 1 of 22</span>
-        <span class="helix-hint"><i class="fas fa-hand-pointer"></i> Click card for certificate details</span>
-      </div>
     </div>
+
+    <!-- ── MOBILE: Horizontal Swipe Carousel ── -->
+    <div class="mobile-cert-track-wrap">
+      <p class="mobile-swipe-hint">
+        <i class="fas fa-hand-pointer"></i> Swipe to explore all 22 certifications
+      </p>
+      <div class="mobile-cert-track">
+        <!-- Cards built dynamically by JS from certsData -->
+      </div>
+      <div class="mobile-cert-dots"></div>
+    </div>
+
   </section>
 
   <!-- CERT MODAL -->
