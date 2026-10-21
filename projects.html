@@ -188,8 +188,9 @@
 
       <!-- Filter bar -->
       <div class="filter-bar">
-        <button class="fbtn active" data-filter="all">All <span style="opacity:0.5;margin-left:5px;font-size:0.7rem;">12</span></button>
+        <button class="fbtn active" data-filter="all">All <span style="opacity:0.5;margin-left:5px;font-size:0.7rem;">13</span></button>
         <button class="fbtn" data-filter="fullstack">Full Stack</button>
+        <button class="fbtn" data-filter="iot">IoT &amp; Mobile</button>
         <button class="fbtn" data-filter="ml">AI / ML</button>
         <button class="fbtn" data-filter="webapp">Web App</button>
         <button class="fbtn" data-filter="analytics">Analytics</button>
@@ -197,6 +198,17 @@
 
       <!-- Projects Grid -->
       <div class="pg-grid" id="pgGrid">
+
+        <div class="pg-card" data-project="kavach" data-cat="iot fullstack">
+          <div class="pgc-tag">IoT &amp; RF Security</div>
+          <div class="pgc-icon"><i class="fas fa-tower-broadcast"></i></div>
+          <h3 class="pgc-title">KAVACH – RF Network Monitor</h3>
+          <p class="pgc-desc">End-to-end IoT &amp; Mobile RF Intrusion Detection System sweeping 126 channels across the 2.4 GHz ISM band with ESP32, NRF24L01+, Firebase telemetry, and a native Android Canvas spectrum visualizer.</p>
+          <div class="pgc-foot">
+            <div class="pgc-tech"><span>ESP32</span><span>NRF24L01+</span><span>Android</span><span>Firebase</span></div>
+            <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i></div>
+          </div>
+        </div>
 
         <div class="pg-card" data-project="cart" data-cat="fullstack">
           <div class="pgc-tag">Full Stack</div>
@@ -400,7 +412,7 @@
         const filter = btn.dataset.filter;
         document.querySelectorAll('.pg-card').forEach(card => {
           const cat  = card.dataset.cat;
-          const show = filter === 'all' || cat === filter;
+          const show = filter === 'all' || cat === filter || (cat && cat.split(' ').includes(filter));
           if (show) {
             card.style.display = '';
             requestAnimationFrame(() => {

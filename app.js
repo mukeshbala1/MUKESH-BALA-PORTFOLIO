@@ -291,7 +291,15 @@ const projectData = {
   long:  'A fully-featured matchmaking application designed for seamless partner discovery. Features include dynamic user profiles, a dedicated online chat system for direct communication, the ability to send and receive connection "interests", and activity tracking. The modular backend is powered by Node.js with Cloudinary for robust media management, while the responsive frontend is custom-built with pure HTML, CSS, and JavaScript.',
   tech:  ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Cloudinary', 'RESTful APIs'],
   link:  'https://matrimony-app-beryl.vercel.app' 
-}
+},
+  kavach: {
+    tag:   'IoT & RF Security',
+    title: 'KAVACH – RF Network Monitor & Intrusion Detection',
+    short: 'End-to-end IoT & Mobile RF spectrum monitor & rogue signal detector for 2.4 GHz ISM band.',
+    long:  'KAVACH is an end-to-end IoT and Mobile RF Network Monitoring & Intrusion Detection System engineered to continuously scan, analyze, and detect unauthorized or rogue radio frequency transmissions across the 2.4 GHz ISM band (2.400 GHz to 2.525 GHz). An ESP32 edge microcontroller sweeps 126 RF channels via an NRF24L01+ transceiver, measures carrier presence and RSSI, and renders live connection metrics on an SSD1306 OLED screen. Real-time telemetry is streamed via secure REST APIs to Google Firebase Realtime Database and synchronized with a native Android dashboard featuring custom Canvas time-series dBm signal charts, a 45-bar dynamic spectrum visualizer, a 15-second heartbeat watchdog, and automated threat classification.',
+    tech:  ['ESP32 DevKit v1', 'NRF24L01+ (PA+LNA)', 'C/C++ (Arduino)', 'Android (Java)', 'Firebase Realtime DB', 'SSD1306 OLED', 'SPI / I2C', 'Material 3', 'REST API'],
+    link:  'https://github.com/mukeshbala1/Network-monitor'
+  }
 };
 
 const pModalOverlay = document.getElementById('pModalOverlay');
