@@ -20,7 +20,6 @@
       font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
       border: 1px solid var(--border); padding: 0.45rem 1rem;
       border-radius: 6px; transition: all 0.25s; margin-bottom: 2.5rem;
-      display: inline-flex;
     }
     .back-link:hover { border-color: var(--gold); color: var(--gold); }
     .pg-eyebrow { font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; display:block; }
@@ -388,10 +387,10 @@
           <p class="footer-sub">UI/UX Designer &amp; Full Stack Developer</p>
         </div>
         <div class="footer-socials">
-          <a href="https://github.com/mukeshbala143"          target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/mukeshbala143" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-          <a href="https://www.figma.com/@mukeshdesign"       target="_blank" rel="noopener"><i class="fab fa-figma"></i></a>
-          <a href="https://dribbble.com/mukesh-bala"          target="_blank" rel="noopener"><i class="fab fa-dribbble"></i></a>
+          <a href="https://github.com/mukeshbala1"          target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/mukeshbala1" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.figma.com/@mukeshdesign"       target="_blank" rel="noopener noreferrer" aria-label="Figma"><i class="fab fa-figma"></i></a>
+          <a href="https://dribbble.com/mukesh-bala"          target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
         </div>
       </div>
       <div class="footer-divider"></div>
@@ -426,25 +425,6 @@
           }
         });
       });
-    });
-
-    // Project card click → modal
-    document.querySelectorAll('.pg-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const key = card.dataset.project;
-        if (key && typeof projectData !== 'undefined' && projectData[key]) {
-          const p = projectData[key];
-          document.getElementById('pmTag').textContent   = p.tag;
-          document.getElementById('pmTitle').textContent = p.title;
-          document.getElementById('pmShort').textContent = p.short;
-          document.getElementById('pmLong').textContent  = p.long;
-          document.getElementById('pmLink').href          = p.link;
-          document.getElementById('pmTech').innerHTML    = p.tech.map(t => `<span>${t}</span>`).join('');
-          document.getElementById('pModalOverlay').classList.add('open');
-          document.body.style.overflow = 'hidden';
-        }
-      });
-    });
   </script>
 </body>
 </html>

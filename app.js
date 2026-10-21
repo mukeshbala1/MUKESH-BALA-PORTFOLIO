@@ -70,7 +70,7 @@ window.addEventListener('load', () => {
   }
   animFollower();
 
-  document.querySelectorAll('a, button, .work-item, .gc, .cf-submit, .social-pill, .nav-cta').forEach(el => {
+  document.querySelectorAll('a, button, .work-item, .pg-card, .fbtn, .gc, .cf-submit, .social-pill, .nav-cta').forEach(el => {
     el.addEventListener('mouseenter', () => {
       follower.style.width  = '60px';
       follower.style.height = '60px';
@@ -202,7 +202,7 @@ const projectData = {
     short: 'MVC-based full-stack e-commerce web application.',
     long:  'Built using Advanced Java (Servlets & JSP) following MVC architecture. Modules include user authentication, product management, shopping cart, order processing, and MySQL-backed persistent storage.',
     tech:  ['Java','Servlet','JSP','MySQL','HTML','CSS','JavaScript','MVC'],
-    link:  'https://github.com/mukeshbala143/E-commerce.git'
+    link:  'https://github.com/mukeshbala1/E-commerce.git'
   },
   crop: {
     tag:   'Web App',
@@ -210,7 +210,7 @@ const projectData = {
     short: 'Full-stack smart agriculture platform for farmers.',
     long:  'Helps farmers manage crop information, get real-time insights, and access farming tools. Built with HTML, CSS, JavaScript frontend and Node.js + MongoDB backend for data management.',
     tech:  ['HTML','CSS','JavaScript','Node.js','MongoDB','Express'],
-    link:  'https://github.com/mukeshbala143/SMART-KISHAN.git'
+    link:  'https://github.com/mukeshbala1/SMART-KISHAN.git'
   },
   car: {
     tag:   'Machine Learning',
@@ -218,7 +218,7 @@ const projectData = {
     short: 'Regression ML model estimating used car prices.',
     long:  'Preprocessed and cleaned CSV datasets, trained regression model using scikit-learn in Python, and serialized with Pickle for seamless web deployment integration.',
     tech:  ['Python','Scikit-learn','Pandas','Flask','Pickle','CSV'],
-    link:  'https://github.com/mukeshbala143/Car-Price-Predictor.git'
+    link:  'https://github.com/mukeshbala1/Car-Price-Predictor.git'
   },
   farm: {
     tag:   'AI / ML',
@@ -226,7 +226,7 @@ const projectData = {
     short: 'ML system recommending optimal crops from soil data.',
     long:  'Analyzes soil and environmental parameters — N, P, K, temperature, humidity, pH, rainfall — and recommends the most suitable crop. Includes a responsive web frontend for ease of use by farmers.',
     tech:  ['Python','Scikit-learn','Flask','HTML','CSS','ML'],
-    link:  'https://github.com/mukeshbala143/crop-recommendation-app.git'
+    link:  'https://github.com/mukeshbala1/crop-recommendation-app.git'
   },
   medical: {
     tag:   'AI / ML',
@@ -234,7 +234,7 @@ const projectData = {
     short: 'AI-powered patient flow optimization system.',
     long:  'Predicts patient volumes and suggests optimal resource allocation to reduce hospital wait times and improve operational efficiency using data-driven AI decision making.',
     tech:  ['Python','AI','Flask','Data Analysis','Healthcare Analytics'],
-    link:  'https://github.com/mukeshbala143/AI-PATIENT-FLOW.git'
+    link:  'https://github.com/mukeshbala1/AI-PATIENT-FLOW.git'
   },
   portfolio: {
     tag:   'Mukesh Bala Portfolio',
@@ -242,7 +242,7 @@ const projectData = {
     short: 'Responsive personal portfolio website.',
     long:  'Personal portfolio showcasing projects, skills, achievements, and contact info with smooth animations and modern UI.',
     tech:  ['HTML','CSS','JavaScript'],
-    link:  'https://github.com/mukeshbala143/portfolio_by_mukesh.git'
+    link:  'https://github.com/mukeshbala1/portfolio_by_mukesh.git'
   },
   amazon: {
     tag:   'Amazon ML Challenge',
@@ -250,7 +250,7 @@ const projectData = {
     short: 'ML model for Amazon product recommendation engine.',
     long:  'Developed a machine learning recommendation system for Amazon products using collaborative filtering and deep learning techniques. The model analyzes user behavior and product attributes to suggest relevant products.',
     tech:  ['Python','TensorFlow','Pandas','Scikit-learn','Data Analysis'],
-    link:  'https://github.com/mukeshbala143/AMAZON-PROJECT.git'
+    link:  'https://github.com/mukeshbala1/AMAZON-PROJECT.git'
   },
   cartify: {
     tag:   'E-Commerce Project',
@@ -266,7 +266,7 @@ const projectData = {
     short: 'Interactive data analytics and reporting dashboard.',
     long:  'Comprehensive analytics platform with real-time charts, filterable data tables, and exportable reports. Designed for business intelligence and informed decision-making support.',
     tech:  ['Python','Flask','Chart.js','MySQL','Data Visualization'],
-    link:  'https://github.com/mukeshbala143/Cyra-Analytics.git'
+    link:  'https://github.com/mukeshbala1/Cyra-Analytics.git'
   },
   mukeshPortfolio: {
   tag:   'Portfolio',
@@ -274,7 +274,7 @@ const projectData = {
   short: 'This portfolio — dark luxury editorial design.',
   long:  'Built from scratch with pure HTML, CSS & JavaScript. Features custom cursor, loader animation, 3D rotating certification carousel, project modals, real email via Web3Forms, scroll reveal animations, and a fully responsive layout.',
   tech:  ['HTML','CSS','JavaScript','Web3Forms','3D CSS Transforms'],
-  link:  'https://github.com/mukeshbala143/MUKESH-BALA-PORTFOLIO.git' 
+  link:  'https://github.com/mukeshbala1/MUKESH-BALA-PORTFOLIO.git' 
 },
   auctionArena: {
   tag:   'Live Multiplayer',
@@ -306,23 +306,43 @@ const pModalOverlay = document.getElementById('pModalOverlay');
 const pModal        = document.getElementById('pModal');
 const pModalClose   = document.getElementById('pModalClose');
 
-document.querySelectorAll('.work-item').forEach(item => {
+function openProjectModal(p) {
+  if (!p || !pModalOverlay) return;
+
+  const pmTag   = document.getElementById('pmTag');
+  const pmTitle = document.getElementById('pmTitle');
+  const pmShort = document.getElementById('pmShort');
+  const pmLong  = document.getElementById('pmLong');
+  const pmLink  = document.getElementById('pmLink');
+  const techEl  = document.getElementById('pmTech');
+
+  if (pmTag)   pmTag.textContent   = p.tag;
+  if (pmTitle) pmTitle.textContent = p.title;
+  if (pmShort) pmShort.textContent = p.short;
+  if (pmLong)  pmLong.textContent  = p.long;
+
+  if (pmLink && p.link) {
+    pmLink.href = p.link;
+    const isGh = p.link.includes('github.com');
+    pmLink.innerHTML = isGh
+      ? '<i class="fab fa-github"></i> View on GitHub'
+      : '<i class="fas fa-arrow-up-right-from-square"></i> Visit Live Project';
+  }
+
+  if (techEl && p.tech) {
+    techEl.innerHTML = p.tech.map(t => `<span>${t}</span>`).join('');
+  }
+
+  pModalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+document.querySelectorAll('.work-item, .pg-card').forEach(item => {
   item.addEventListener('click', () => {
     const key = item.dataset.project;
-    const p   = projectData[key];
-    if (!p || !pModalOverlay) return;
-
-    document.getElementById('pmTag').textContent   = p.tag;
-    document.getElementById('pmTitle').textContent = p.title;
-    document.getElementById('pmShort').textContent = p.short;
-    document.getElementById('pmLong').textContent  = p.long;
-    document.getElementById('pmLink').href          = p.link;
-
-    const techEl = document.getElementById('pmTech');
-    techEl.innerHTML = p.tech.map(t => `<span>${t}</span>`).join('');
-
-    pModalOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    if (key && projectData[key]) {
+      openProjectModal(projectData[key]);
+    }
   });
 });
 
@@ -630,6 +650,7 @@ if (contactForm) {
       showCfState('error');
       if (cfErrorMsg) cfErrorMsg.textContent = 'Something went wrong. Email me at mukeshbala95133@gmail.com';
       console.error('Form error:', err);
+      setTimeout(() => showCfState('idle'), 6000);
     }
   });
 }
@@ -708,5 +729,5 @@ document.addEventListener('keydown', e => {
 ════════════════════════════════════════ */
 console.log('%c✦ Mukesh Bala', 'font-size:24px;font-weight:700;color:#d4a853;font-family:Georgia,serif;');
 console.log('%cUI/UX Designer & Full Stack Developer', 'font-size:13px;color:#22d3ee;');
-console.log('%c→ linkedin.com/in/mukeshbala143', 'font-size:12px;color:#a3e635;');
-console.log('%c→ github.com/mukeshbala143', 'font-size:12px;color:#f87171;');
+console.log('%c→ linkedin.com/in/mukeshbala1', 'font-size:12px;color:#a3e635;');
+console.log('%c→ github.com/mukeshbala1', 'font-size:12px;color:#f87171;');
