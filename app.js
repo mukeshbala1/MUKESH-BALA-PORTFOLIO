@@ -19,6 +19,53 @@ const WEB3_KEY = 'e93cc678-22dd-4225-be9c-2eb79df19736';
 
 
 /* ════════════════════════════════════════
+   THEME MANAGER (Dark / Light Mode)
+════════════════════════════════════════ */
+(function() {
+  function getPreferredTheme() {
+    const saved = localStorage.getItem('mb_theme');
+    if (saved) return saved;
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.querySelectorAll('.theme-toggle, .mm-theme-btn').forEach(btn => {
+      btn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+      btn.classList.toggle('light-active', theme === 'light');
+    });
+  }
+
+  const initialTheme = getPreferredTheme();
+  applyTheme(initialTheme);
+
+  window.toggleTheme = function() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('mb_theme', next);
+    applyTheme(next);
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#themeToggle, #mmThemeToggle').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.toggleTheme();
+      });
+    });
+  });
+
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+      if (!localStorage.getItem('mb_theme')) {
+        applyTheme(e.matches ? 'light' : 'dark');
+      }
+    });
+  }
+})();
+
+
+/* ════════════════════════════════════════
    1. LOADER
 ════════════════════════════════════════ */
 window.addEventListener('load', () => {
@@ -364,81 +411,227 @@ if (pModalOverlay) {
 
 
 /* ════════════════════════════════════════
-   7. 3D CAROUSEL (Desktop only)
+   7. 3D INFINITE HELIX RIBBON CONTROLLER
 ════════════════════════════════════════ */
-(function() {
-  const container = document.getElementById('drag-container');
-  const pivot     = document.getElementById('pivot');
-  if (!container || !pivot) return;
+function initHelixRibbon() {
+  const viewport = document.getElementById('helixViewport');
+  const pivot    = document.getElementById('helixPivot');
+  if (!viewport || !pivot || typeof certsData === 'undefined') return;
 
-  let angle      = 0;
-  let isDragging = false;
-  let startX     = 0;
-  let prevX      = 0;
-  let momentum   = 0;
-  let autoSpeed  = 0.09;
-  let lastTime   = null;
-  let rafId;
+  const total = certsData.length; // 22
+  pivot.innerHTML = '';
 
-  function animate(ts) {
-    if (!isDragging) {
-      if (lastTime !== null) {
-        const delta = (ts - lastTime) / 16.67;
-        angle   -= (autoSpeed + momentum) * delta;
-        momentum *= 0.95;
-      }
-      lastTime = ts;
-      pivot.style.transform = `rotateY(${angle}deg)`;
-    }
-    rafId = requestAnimationFrame(animate);
+  // Render cards along 3D spiral
+  const cards = certsData.map((d, i) => {
+    const card = document.createElement('div');
+    card.className = 'helix-card';
+    card.style.setProperty('--card-color', d.color);
+    card.innerHTML = `
+      <div class="helix-card-icon"><i class="fas fa-star"></i></div>
+      <div>
+        <span class="helix-card-cat">${d.category}</span>
+        <h3 class="helix-card-title">${d.title}</h3>
+        <p class="helix-card-prov">${d.provider}</p>
+      </div>
+      <div class="helix-card-bar"></div>
+    `;
+    card.addEventListener('click', () => {
+      if (Math.abs(dragDistance) > 12) return;
+      openCertModal(i);
+    });
+    pivot.appendChild(card);
+    return card;
+  });
+
+  // Responsive radius & parameters
+  function getParams() {
+    const w = window.innerWidth;
+    if (w > 1200) return { radius: 460, yStep: 36, pitch: -6 };
+    if (w > 768)  return { radius: 360, yStep: 30, pitch: -5 };
+    if (w > 480)  return { radius: 260, yStep: 24, pitch: -4 };
+    return { radius: 195, yStep: 20, pitch: -3 };
   }
 
-  rafId = requestAnimationFrame(animate);
+  let { radius, yStep, pitch } = getParams();
+  window.addEventListener('resize', () => {
+    const p = getParams();
+    radius = p.radius; yStep = p.yStep; pitch = p.pitch;
+    updateCards();
+  }, { passive: true });
 
-  container.addEventListener('mousedown', e => {
-    isDragging = true; startX = e.pageX; prevX = e.pageX;
-    momentum = 0; lastTime = null;
+  const angleStep = 360 / 11; // 32.72deg (2 full loops for 22 milestones)
+  let yaw = 0;
+  let panY = 0;
+  let targetYaw = 0;
+  let targetPanY = 0;
+  let autoPlay = true;
+  let autoSpeed = 0.14;
+  let isDragging = false;
+  let startX = 0, startY = 0;
+  let prevX = 0, prevY = 0;
+  let dragDistance = 0;
+  let momentumX = 0, momentumY = 0;
+
+  function updateCards() {
+    let closestIndex = 0;
+    let maxCos = -999;
+
+    cards.forEach((card, i) => {
+      const cardAngle = i * angleStep;
+      const cardBaseY = (i - (total - 1) / 2) * yStep;
+      
+      const relAngle = ((cardAngle + yaw) % 360 + 360) % 360;
+      const rad = (relAngle * Math.PI) / 180;
+      const cos = Math.cos(rad);
+
+      card.style.transform = `rotateY(${cardAngle}deg) translateY(${cardBaseY}px) translateZ(${radius}px)`;
+
+      if (cos > maxCos) {
+        maxCos = cos;
+        closestIndex = i;
+      }
+
+      // Real-time depth of field
+      if (cos > 0.4) {
+        card.style.opacity = Math.min(1, 0.72 + cos * 0.35);
+        card.style.filter = 'none';
+        card.style.zIndex = Math.round(100 + cos * 50);
+      } else if (cos > -0.2) {
+        card.style.opacity = 0.55 + (cos + 0.2) * 0.3;
+        card.style.filter = 'blur(1px)';
+        card.style.zIndex = Math.round(50 + cos * 40);
+      } else {
+        card.style.opacity = 0.22 + (cos + 1) * 0.15;
+        card.style.filter = 'blur(2.5px)';
+        card.style.zIndex = Math.round(10 + (cos + 1) * 15);
+      }
+    });
+
+    pivot.style.transform = `rotateX(${pitch}deg) rotateY(${yaw}deg) translateY(${panY}px)`;
+
+    const indicator = document.getElementById('helixIndicator');
+    if (indicator && certsData[closestIndex]) {
+      indicator.textContent = `Milestone ${closestIndex + 1} of ${total} — ${certsData[closestIndex].title}`;
+    }
+  }
+
+  // Physics animation loop
+  let lastTime = performance.now();
+  function loop(now) {
+    const dt = Math.min((now - lastTime) / 16.67, 2);
+    lastTime = now;
+
+    if (!isDragging) {
+      if (autoPlay) {
+        targetYaw -= autoSpeed * dt;
+      }
+      targetYaw += momentumX * dt;
+      targetPanY += momentumY * dt;
+      momentumX *= 0.94;
+      momentumY *= 0.94;
+    }
+
+    const maxPan = (total * yStep) / 2;
+    targetPanY = Math.max(-maxPan, Math.min(maxPan, targetPanY));
+
+    yaw += (targetYaw - yaw) * 0.12 * dt;
+    panY += (targetPanY - panY) * 0.12 * dt;
+
+    updateCards();
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  // Drag interaction (mouse)
+  viewport.addEventListener('mousedown', e => {
+    isDragging = true;
+    dragDistance = 0;
+    startX = prevX = e.pageX;
+    startY = prevY = e.pageY;
+    momentumX = momentumY = 0;
     e.preventDefault();
   });
 
   window.addEventListener('mousemove', e => {
     if (!isDragging) return;
-    const dx = e.pageX - startX;
-    momentum = (e.pageX - prevX) * 0.12;
-    angle   += dx * 0.18;
-    prevX    = e.pageX; startX = e.pageX;
-    pivot.style.transform = `rotateY(${angle}deg)`;
+    const dx = e.pageX - prevX;
+    const dy = e.pageY - prevY;
+    dragDistance += Math.abs(dx) + Math.abs(dy);
+    momentumX = dx * 0.14;
+    momentumY = dy * 0.25;
+    targetYaw += dx * 0.22;
+    targetPanY += dy * 0.45;
+    prevX = e.pageX;
+    prevY = e.pageY;
   });
 
-  window.addEventListener('mouseup', () => {
-    if (!isDragging) return;
-    isDragging = false; lastTime = null;
-  });
+  window.addEventListener('mouseup', () => { isDragging = false; });
 
-  container.addEventListener('touchstart', e => {
+  // Touch interaction (mobile / tablet)
+  viewport.addEventListener('touchstart', e => {
     isDragging = true;
+    dragDistance = 0;
     startX = prevX = e.touches[0].pageX;
-    momentum = 0; lastTime = null;
+    startY = prevY = e.touches[0].pageY;
+    momentumX = momentumY = 0;
   }, { passive: true });
 
   window.addEventListener('touchmove', e => {
     if (!isDragging) return;
-    const dx = e.touches[0].pageX - startX;
-    momentum = (e.touches[0].pageX - prevX) * 0.12;
-    angle   += dx * 0.18;
-    prevX    = e.touches[0].pageX; startX = e.touches[0].pageX;
-    pivot.style.transform = `rotateY(${angle}deg)`;
+    const dx = e.touches[0].pageX - prevX;
+    const dy = e.touches[0].pageY - prevY;
+    dragDistance += Math.abs(dx) + Math.abs(dy);
+    momentumX = dx * 0.14;
+    momentumY = dy * 0.25;
+    targetYaw += dx * 0.25;
+    targetPanY += dy * 0.45;
+    prevX = e.touches[0].pageX;
+    prevY = e.touches[0].pageY;
   }, { passive: true });
 
-  window.addEventListener('touchend', () => {
-    isDragging = false; lastTime = null;
-  });
+  window.addEventListener('touchend', () => { isDragging = false; });
 
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { cancelAnimationFrame(rafId); }
-    else { lastTime = null; rafId = requestAnimationFrame(animate); }
-  });
-})();
+  // Mouse wheel pan
+  viewport.addEventListener('wheel', e => {
+    e.preventDefault();
+    targetPanY -= e.deltaY * 0.4;
+    targetYaw -= e.deltaX * 0.18;
+  }, { passive: false });
+
+  // HUD Controls
+  const btnPrev = document.getElementById('helixPrev');
+  const btnNext = document.getElementById('helixNext');
+  const btnPlay = document.getElementById('helixTogglePlay');
+  const btnReset = document.getElementById('helixReset');
+  const playIcon = document.getElementById('helixPlayIcon');
+  const playText = document.getElementById('helixPlayText');
+
+  if (btnPrev) {
+    btnPrev.addEventListener('click', () => {
+      targetYaw += angleStep;
+      targetPanY += yStep;
+    });
+  }
+  if (btnNext) {
+    btnNext.addEventListener('click', () => {
+      targetYaw -= angleStep;
+      targetPanY -= yStep;
+    });
+  }
+  if (btnPlay) {
+    btnPlay.addEventListener('click', () => {
+      autoPlay = !autoPlay;
+      if (playIcon) playIcon.className = autoPlay ? 'fas fa-pause' : 'fas fa-play';
+      if (playText) playText.textContent = autoPlay ? 'Auto Orbit' : 'Paused';
+    });
+  }
+  if (btnReset) {
+    btnReset.addEventListener('click', () => {
+      targetYaw = 0;
+      targetPanY = 0;
+    });
+  }
+}
 
 
 /* ════════════════════════════════════════
@@ -569,6 +762,8 @@ function handleCertOverlay(e) {
 }
 
 
+document.addEventListener("DOMContentLoaded", initHelixRibbon);
+
 /* ════════════════════════════════════════
    9. CONTACT FORM — REAL EMAIL via Web3Forms
 ════════════════════════════════════════ */
@@ -677,51 +872,6 @@ document.addEventListener('keydown', e => {
     if (pmo) { pmo.classList.remove('open'); document.body.style.overflow = ''; }
   }
 });
-
-
-/* ════════════════════════════════════════
-   12. MOBILE CERT SWIPE CAROUSEL
-   Builds a horizontal swipe slider from certsData
-   Shown only on mobile (≤768px via CSS)
-════════════════════════════════════════ */
-(function buildMobileCerts() {
-  const wrap  = document.querySelector('.mobile-cert-track-wrap');
-  if (!wrap) return;
-
-  const track = wrap.querySelector('.mobile-cert-track');
-  const dots  = wrap.querySelector('.mobile-cert-dots');
-  if (!track || !dots) return;
-
-  certsData.forEach((d, i) => {
-    // Card
-    const card = document.createElement('div');
-    card.className = 'mobile-cert-card';
-    card.style.borderColor = d.color + '33';
-    card.innerHTML = `
-      <div class="gc-icon" style="border:1px solid ${d.color};color:${d.color};box-shadow:0 0 16px ${d.color}33;background:rgba(0,0,0,0.2);">
-        <i class="fas fa-star"></i>
-      </div>
-      <span class="gc-cat" style="color:${d.color};">${d.category}</span>
-      <h3>${d.title}</h3>
-      <p>${d.provider}</p>
-      <div class="gc-bar" style="background:${d.color};box-shadow:0 0 10px ${d.color};"></div>
-    `;
-    card.addEventListener('click', () => openCertModal(i));
-    track.appendChild(card);
-
-    // Dot
-    const dot = document.createElement('span');
-    if (i === 0) dot.classList.add('active');
-    dots.appendChild(dot);
-  });
-
-  // Update active dot on scroll
-  const dotEls = dots.querySelectorAll('span');
-  track.addEventListener('scroll', () => {
-    const idx = Math.round(track.scrollLeft / (track.scrollWidth / certsData.length));
-    dotEls.forEach((d, i) => d.classList.toggle('active', i === idx));
-  }, { passive: true });
-})();
 
 
 /* ════════════════════════════════════════
