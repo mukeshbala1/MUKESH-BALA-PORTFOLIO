@@ -42,6 +42,12 @@ const WEB3_KEY = 'e93cc678-22dd-4225-be9c-2eb79df19736';
     }
   }
 
+  // Restore saved preference
+  try {
+    const saved = localStorage.getItem('theme');
+    if (saved) setTheme(saved);
+  } catch (e) {}
+
   function bindThemeButtons() {
     const toggles = document.querySelectorAll('#themeToggle, #mmThemeToggle');
     toggles.forEach(btn => {
@@ -419,6 +425,23 @@ if (pModalOverlay) {
   const container = document.getElementById('drag-container');
   const pivot     = document.getElementById('pivot');
   if (!container || !pivot) return;
+
+  // Dynamically distribute active cards seamlessly across a 360deg circle with zero gaps
+  function setupCarouselGeometry() {
+    const cards = Array.from(pivot.querySelectorAll('.gc'));
+    const total = cards.length;
+    if (total === 0) return;
+    const angleStep = 360 / total;
+    pivot.style.setProperty('--total-cards', total);
+    pivot.style.setProperty('--angle-step', `${angleStep}deg`);
+    cards.forEach((card, idx) => {
+      card.style.setProperty('--i', idx);
+      card.style.transform = `rotateY(${idx * angleStep}deg) translateZ(var(--cr))`;
+      card.setAttribute('onclick', `openCertModal(${idx})`);
+    });
+  }
+  setupCarouselGeometry();
+  window.addEventListener('resize', setupCarouselGeometry);
 
   let angle      = 0;
   let isDragging = false;

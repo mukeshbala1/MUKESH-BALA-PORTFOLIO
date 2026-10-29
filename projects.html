@@ -289,8 +289,14 @@
       <a href="index.html#certs" class="nav-link">Certs</a>
       <a href="index.html#contact" class="nav-link">Contact</a>
     </div>
-    <a href="Resume.pdf" download class="nav-cta"><i class="fas fa-arrow-down"></i> Resume</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span></button>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+        <i class="fas fa-moon theme-icon-dark"></i>
+        <i class="fas fa-sun theme-icon-light"></i>
+      </button>
+      <a href="Resume.pdf" download class="nav-cta"><i class="fas fa-arrow-down"></i> Resume</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span></button>
+    </div>
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
@@ -316,8 +322,8 @@
 
       <!-- Filter bar -->
       <div class="filter-bar">
-        <button class="fbtn active" data-filter="all">All <span
-            style="opacity:0.5;margin-left:5px;font-size:0.7rem;">13</span></button>
+        <button class="fbtn active" data-filter="all">All <span id="projectCountSpan"
+            style="opacity:0.5;margin-left:5px;font-size:0.7rem;">10</span></button>
         <button class="fbtn" data-filter="fullstack">Full Stack</button>
         <button class="fbtn" data-filter="iot">IoT &amp; Mobile</button>
         <button class="fbtn" data-filter="ml">AI / ML</button>
@@ -552,6 +558,12 @@
 
   <script src="app.js"></script>
   <script>
+    // Sync active project count
+    const countSpan = document.getElementById('projectCountSpan');
+    if (countSpan) {
+      countSpan.textContent = document.querySelectorAll('.pg-card').length;
+    }
+
     // Projects page filter logic
     document.querySelectorAll('.fbtn').forEach(btn => {
       btn.addEventListener('click', () => {
