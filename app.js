@@ -269,14 +269,14 @@ const projectData = {
     tech:  ['Python','Scikit-learn','Pandas','Flask','Pickle','CSV'],
     link:  'https://github.com/mukeshbala1/Car-Price-Predictor.git'
   },
-  farm: {
-    tag:   'AI / ML',
-    title: 'Crop Recommendation System',
-    short: 'ML system recommending optimal crops from soil data.',
-    long:  'Analyzes soil and environmental parameters — N, P, K, temperature, humidity, pH, rainfall — and recommends the most suitable crop. Includes a responsive web frontend for ease of use by farmers.',
-    tech:  ['Python','Scikit-learn','Flask','HTML','CSS','ML'],
-    link:  'https://github.com/mukeshbala1/crop-recommendation-app.git'
-  },
+  // farm: {
+  //   tag:   'AI / ML',
+  //   title: 'Crop Recommendation System',
+  //   short: 'ML system recommending optimal crops from soil data.',
+  //   long:  'Analyzes soil and environmental parameters — N, P, K, temperature, humidity, pH, rainfall — and recommends the most suitable crop. Includes a responsive web frontend for ease of use by farmers.',
+  //   tech:  ['Python','Scikit-learn','Flask','HTML','CSS','ML'],
+  //   link:  'https://github.com/mukeshbala1/crop-recommendation-app.git'
+  // },
   medical: {
     tag:   'AI / ML',
     title: 'AI-Patient-Flow',
@@ -293,14 +293,14 @@ const projectData = {
     tech:  ['HTML','CSS','JavaScript'],
     link:  'https://github.com/mukeshbala1/portfolio_by_mukesh.git'
   },
-  amazon: {
-    tag:   'Amazon ML Challenge',
-    title: 'Amazon Product Recommendation System',
-    short: 'ML model for Amazon product recommendation engine.',
-    long:  'Developed a machine learning recommendation system for Amazon products using collaborative filtering and deep learning techniques. The model analyzes user behavior and product attributes to suggest relevant products.',
-    tech:  ['Python','TensorFlow','Pandas','Scikit-learn','Data Analysis'],
-    link:  'https://github.com/mukeshbala1/AMAZON-PROJECT.git'
-  },
+  // amazon: {
+  //   tag:   'Amazon ML Challenge',
+  //   title: 'Amazon Product Recommendation System',
+  //   short: 'ML model for Amazon product recommendation engine.',
+  //   long:  'Developed a machine learning recommendation system for Amazon products using collaborative filtering and deep learning techniques. The model analyzes user behavior and product attributes to suggest relevant products.',
+  //   tech:  ['Python','TensorFlow','Pandas','Scikit-learn','Data Analysis'],
+  //   link:  'https://github.com/mukeshbala1/AMAZON-PROJECT.git'
+  // },
   cartify: {
     tag:   'E-Commerce Project',
     title: 'Cartify – E-Commerce Platform',
@@ -538,9 +538,9 @@ const certsData = [
     description:"Completed ISRO's course on remote sensing data analytics for crop production forecasting and geospatial insights, offered by the Indian Institute of Remote Sensing.",
     technologies:['Remote Sensing','GIS','Geospatial','Data Analytics','Python'], linkedinUrl:'https://www.linkedin.com/posts/activity-7356929231903186946-4KkY?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },
 
-  { category:'CLOUD', title:'AWS Developer Certification Training', provider:'Infosys Springboard', color:'#f59e0b',
-    description:'Completed AWS Developer certification training — cloud-native application development, Lambda functions, S3, DynamoDB, API Gateway, and core AWS services.',
-    technologies:['AWS','Lambda','S3','DynamoDB','API Gateway','Cloud'], linkedinUrl:'https://www.linkedin.com/posts/activity-7343900108851167232-k33B?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },
+  // { category:'CLOUD', title:'AWS Developer Certification Training', provider:'Infosys Springboard', color:'#f59e0b',
+  //   description:'Completed AWS Developer certification training — cloud-native application development, Lambda functions, S3, DynamoDB, API Gateway, and core AWS services.',
+  //   technologies:['AWS','Lambda','S3','DynamoDB','API Gateway','Cloud'], linkedinUrl:'https://www.linkedin.com/posts/activity-7343900108851167232-k33B?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },
 
   { category:'BUSINESS', title:'Introduction to Corporate Actions', provider:'TCS iON', color:'#818cf8',
     description:'Completed course on financial corporate actions, business processes, and their impact on investors and financial markets from a technology and operations perspective.',
@@ -550,13 +550,13 @@ const certsData = [
     description:'Internship focused on Python programming with MySQL integration — CRUD operations, stored procedures, database schema design, and mini project delivery.',
     technologies:['Python','MySQL','CRUD','Database Design','Stored Procedures'], linkedinUrl:'https://www.linkedin.com/posts/activity-7245416537883320321-TQ86?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },
 
-  { category:'DATA SCIENCE', title:'Data Science 101', provider:'IBM SkillsBuild', color:'#ec4899',
-    description:'Foundational IBM course covering data science concepts, analytics workflows, open-source tools (Jupyter, pandas, NumPy), and real-world industry use cases.',
-    technologies:['Data Science','Analytics','Python','Jupyter','Pandas','IBM'], linkedinUrl:'https://www.linkedin.com/posts/activity-7339183294091051008-YoPA?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },
+  // { category:'DATA SCIENCE', title:'Data Science 101', provider:'IBM SkillsBuild', color:'#ec4899',
+  //   description:'Foundational IBM course covering data science concepts, analytics workflows, open-source tools (Jupyter, pandas, NumPy), and real-world industry use cases.',
+  //   technologies:['Data Science','Analytics','Python','Jupyter','Pandas','IBM'], linkedinUrl:'https://www.linkedin.com/posts/activity-7339183294091051008-YoPA?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },
 
-  { category:'DATA ANALYTICS', title:'Data Analytics Job Simulation', provider:'Deloitte (Forage)', color:'#34d399',
-    description:'Deloitte virtual job simulation — hands-on data analysis, forensic technology application, and deriving actionable business insights from real industry datasets.',
-    technologies:['Data Analysis','Business Analytics','Excel','Tableau','Forensic Tech'], linkedinUrl:'https://www.linkedin.com/posts/activity-7342225518211043330-I8n2?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },
+  // { category:'DATA ANALYTICS', title:'Data Analytics Job Simulation', provider:'Deloitte (Forage)', color:'#34d399',
+  //   description:'Deloitte virtual job simulation — hands-on data analysis, forensic technology application, and deriving actionable business insights from real industry datasets.',
+  //   technologies:['Data Analysis','Business Analytics','Excel','Tableau','Forensic Tech'], linkedinUrl:'https://www.linkedin.com/posts/activity-7342225518211043330-I8n2?utm_source=share&utm_medium=member_desktop&rcm=ACoAADnzwmEBlPSGS1jS2pZ2OA4hy6uQAA6S4wE' },
 
   { category:'DESIGN & UX', title:'UX Design Foundations', provider:'Google (Coursera)', color:'#a3e635',
     description:'Google UX Design course covering user research, wireframing, prototyping, usability testing, accessibility, and the end-to-end user-centered design process.',

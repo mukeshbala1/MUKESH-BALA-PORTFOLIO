@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,50 +8,113 @@
   <title>Projects — Mukesh Bala</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-  <script>
-    (function() {
-      const saved = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = saved || (prefersDark ? 'dark' : 'dark');
-      if (theme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
-    })();
-  </script>
   <style>
     /* Projects page extra styles */
-    .projects-page { padding: 10rem 0 6rem; }
-    .projects-page-head { margin-bottom: 4rem; }
-    .back-link {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--grey2); text-decoration: none; font-size: 0.82rem;
-      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-      border: 1px solid var(--border); padding: 0.45rem 1rem;
-      border-radius: 6px; transition: all 0.25s; margin-bottom: 2.5rem;
+    .projects-page {
+      padding: 10rem 0 6rem;
     }
-    .back-link:hover { border-color: var(--gold); color: var(--gold); }
-    .pg-eyebrow { font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; display:block; }
-    .pg-h1 { font-family:var(--font-serif); font-size:clamp(2.8rem,6vw,5rem); font-weight:400; letter-spacing:-0.03em; line-height:1.05; margin-bottom:1rem; }
-    .pg-h1 em { font-style:italic; color:var(--gold); }
-    .pg-sub { font-size:0.95rem; color:var(--grey); max-width:480px; line-height:1.7; }
+
+    .projects-page-head {
+      margin-bottom: 4rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--grey2);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      transition: all 0.25s;
+      margin-bottom: 2.5rem;
+    }
+
+    .back-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .pg-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .pg-h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .pg-h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .pg-sub {
+      font-size: 0.95rem;
+      color: var(--grey);
+      max-width: 480px;
+      line-height: 1.7;
+    }
 
     /* Filter */
-    .filter-bar { display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:3rem; }
-    .fbtn {
-      padding:0.45rem 1.1rem; border-radius:100px;
-      border:1px solid var(--border); background:transparent;
-      color:var(--grey2); font-size:0.78rem; font-weight:600;
-      cursor:none; transition:all 0.22s; font-family:var(--font-sans);
-      letter-spacing:0.04em;
+    .filter-bar {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
     }
-    .fbtn.active { background:rgba(212,168,83,0.1); border-color:rgba(212,168,83,0.35); color:var(--gold); }
-    .fbtn:hover:not(.active) { border-color:var(--border-h); color:var(--grey); }
+
+    .fbtn {
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--grey2);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: none;
+      transition: all 0.22s;
+      font-family: var(--font-sans);
+      letter-spacing: 0.04em;
+    }
+
+    .fbtn.active {
+      background: rgba(212, 168, 83, 0.1);
+      border-color: rgba(212, 168, 83, 0.35);
+      color: var(--gold);
+    }
+
+    .fbtn:hover:not(.active) {
+      border-color: var(--border-h);
+      color: var(--grey);
+    }
 
     /* Projects grid */
-    .pg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; }
+    .pg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
 
     .pg-card {
       background: var(--surface);
@@ -61,121 +125,152 @@
       transition: all 0.3s var(--ease);
       position: relative;
       overflow: hidden;
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
       min-height: 260px;
     }
 
     .pg-card::after {
-      content:''; position:absolute; inset:0;
-      background: linear-gradient(135deg, rgba(212,168,83,0.04), transparent);
-      opacity:0; transition:opacity 0.3s; border-radius:14px;
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212, 168, 83, 0.04), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: 14px;
     }
 
     .pg-card:hover {
-      border-color: rgba(212,168,83,0.25);
+      border-color: rgba(212, 168, 83, 0.25);
       transform: translateY(-8px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     }
 
-    .pg-card:hover::after { opacity:1; }
+    .pg-card:hover::after {
+      opacity: 1;
+    }
 
     .pgc-tag {
-      font-size:0.62rem; font-weight:700; letter-spacing:0.14em;
-      text-transform:uppercase; color:var(--gold);
-      background:rgba(212,168,83,0.08); border:1px solid rgba(212,168,83,0.18);
-      padding:3px 9px; border-radius:4px; width:fit-content;
-      margin-bottom:1.2rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(212, 168, 83, 0.08);
+      border: 1px solid rgba(212, 168, 83, 0.18);
+      padding: 3px 9px;
+      border-radius: 4px;
+      width: fit-content;
+      margin-bottom: 1.2rem;
     }
 
     .pgc-icon {
-      font-size:1.8rem; color:rgba(212,168,83,0.4);
-      margin-bottom:0.9rem; transition:all 0.3s;
+      font-size: 1.8rem;
+      color: rgba(212, 168, 83, 0.4);
+      margin-bottom: 0.9rem;
+      transition: all 0.3s;
     }
 
-    .pg-card:hover .pgc-icon { color:var(--gold); transform:scale(1.1); }
+    .pg-card:hover .pgc-icon {
+      color: var(--gold);
+      transform: scale(1.1);
+    }
 
     .pgc-title {
-      font-family:var(--font-serif); font-size:1.2rem;
-      font-weight:400; margin-bottom:0.6rem;
-      color:var(--white); line-height:1.25;
-      letter-spacing:-0.01em;
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+      color: var(--white);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
     }
 
     .pgc-desc {
-      font-size:0.82rem; color:var(--grey);
-      line-height:1.65; flex:1; margin-bottom:1.2rem;
+      font-size: 0.82rem;
+      color: var(--grey);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.2rem;
     }
 
     .pgc-foot {
-      display:flex; align-items:center;
-      justify-content:space-between;
-      padding-top:1rem;
-      border-top:1px solid var(--border);
-      margin-top:auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
     }
 
-    .pgc-tech { display:flex; gap:5px; flex-wrap:wrap; }
+    .pgc-tech {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
     .pgc-tech span {
-      font-size:0.62rem; font-weight:600;
-      padding:2px 7px; border-radius:3px;
-      background:rgba(255,255,255,0.04);
-      border:1px solid var(--border);
-      color:var(--grey2);
+      font-size: 0.62rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--grey2);
     }
 
     .pgc-arrow {
-      width:30px; height:30px;
-      border:1px solid var(--border);
-      border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      color:var(--grey2); font-size:0.72rem;
-      transition:all 0.28s; flex-shrink:0;
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey2);
+      font-size: 0.72rem;
+      transition: all 0.28s;
+      flex-shrink: 0;
     }
 
     .pg-card:hover .pgc-arrow {
-      background:var(--gold); border-color:var(--gold);
-      color:var(--black); transform:rotate(45deg);
-    }
-
-    /* Light Mode Overrides for Projects Page */
-    [data-theme="light"] .pg-card {
-      background: var(--surface);
-      border-color: var(--border);
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
-    }
-    [data-theme="light"] .pg-card:hover {
-      border-color: rgba(181, 137, 30, 0.4);
-      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
-    }
-    [data-theme="light"] .pgc-tech span {
-      background: rgba(15, 23, 42, 0.04);
-      border-color: var(--border);
-    }
-    [data-theme="light"] .pg-card:hover .pgc-arrow {
-      color: #ffffff;
-    }
-    [data-theme="light"] .fbtn.active {
-      background: rgba(181, 137, 30, 0.12);
-      border-color: rgba(181, 137, 30, 0.4);
-      color: var(--gold);
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--black);
+      transform: rotate(45deg);
     }
 
     /* Hidden cards */
     .pg-card[data-hidden="true"] {
-      opacity:0; pointer-events:none; display:none;
+      opacity: 0;
+      pointer-events: none;
+      display: none;
     }
 
-    @media (max-width: 900px) { .pg-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 900px) {
+      .pg-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 560px) {
-      .pg-grid { grid-template-columns: 1fr; }
-      .projects-page { padding: 7rem 0 4rem; }
+      .pg-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-page {
+        padding: 7rem 0 4rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <div class="noise"></div>
-  <div class="cursor" id="cursor"><div class="cursor-dot"></div></div>
+  <div class="cursor" id="cursor">
+    <div class="cursor-dot"></div>
+  </div>
   <div class="cursor-follower" id="cursorFollower"></div>
 
   <!-- BACKGROUND -->
@@ -189,36 +284,21 @@
   <nav class="nav scrolled" id="mainNav">
     <a href="index.html" class="nav-logo"><span class="logo-mark">M</span><span class="logo-text">ukesh Bala</span></a>
     <div class="nav-links">
-      <a href="index.html#about"   class="nav-link">About</a>
-      <a href="index.html#work"    class="nav-link">Work</a>
-      <a href="index.html#certs"   class="nav-link">Certs</a>
+      <a href="index.html#about" class="nav-link">About</a>
+      <a href="index.html#work" class="nav-link">Work</a>
+      <a href="index.html#certs" class="nav-link">Certs</a>
       <a href="index.html#contact" class="nav-link">Contact</a>
     </div>
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">
-        <i class="fas fa-moon theme-icon-dark"></i>
-        <i class="fas fa-sun theme-icon-light"></i>
-      </button>
-      <a href="Resume.pdf" download class="nav-cta"><i class="fas fa-arrow-down"></i> Resume</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span></button>
-    </div>
+    <a href="Resume.pdf" download class="nav-cta"><i class="fas fa-arrow-down"></i> Resume</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span></button>
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html#about"   class="mm-link" onclick="closeMobileMenu()">About</a>
-    <a href="index.html#work"    class="mm-link" onclick="closeMobileMenu()">Work</a>
-    <a href="index.html#certs"   class="mm-link" onclick="closeMobileMenu()">Certs</a>
+    <a href="index.html#about" class="mm-link" onclick="closeMobileMenu()">About</a>
+    <a href="index.html#work" class="mm-link" onclick="closeMobileMenu()">Work</a>
+    <a href="index.html#certs" class="mm-link" onclick="closeMobileMenu()">Certs</a>
     <a href="index.html#contact" class="mm-link" onclick="closeMobileMenu()">Contact</a>
-    <div class="mm-actions">
-      <button class="mm-theme-btn" id="mmThemeToggle" aria-label="Toggle theme">
-        <i class="fas fa-moon theme-icon-dark"></i>
-        <i class="fas fa-sun theme-icon-light"></i>
-        <span class="theme-label">Switch Theme</span>
-      </button>
-      <a href="Resume.pdf" download class="nav-cta mm-cta">
-        <i class="fas fa-arrow-down"></i> Download Resume
-      </a>
-    </div>
+    <a href="Resume.pdf" download class="mm-cta">Download Resume</a>
   </div>
 
   <!-- PAGE CONTENT -->
@@ -230,12 +310,14 @@
         <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
         <span class="pg-eyebrow">My Work</span>
         <h1 class="pg-h1">All <em>Projects</em></h1>
-        <p class="pg-sub">A complete catalog of full-stack apps, AI/ML systems, automation tools, and web experiments.</p>
+        <p class="pg-sub">A complete catalog of full-stack apps, AI/ML systems, automation tools, and web experiments.
+        </p>
       </div>
 
       <!-- Filter bar -->
       <div class="filter-bar">
-        <button class="fbtn active" data-filter="all">All <span style="opacity:0.5;margin-left:5px;font-size:0.7rem;">13</span></button>
+        <button class="fbtn active" data-filter="all">All <span
+            style="opacity:0.5;margin-left:5px;font-size:0.7rem;">13</span></button>
         <button class="fbtn" data-filter="fullstack">Full Stack</button>
         <button class="fbtn" data-filter="iot">IoT &amp; Mobile</button>
         <button class="fbtn" data-filter="ml">AI / ML</button>
@@ -250,9 +332,12 @@
           <div class="pgc-tag">IoT &amp; RF Security</div>
           <div class="pgc-icon"><i class="fas fa-tower-broadcast"></i></div>
           <h3 class="pgc-title">KAVACH – RF Network Monitor</h3>
-          <p class="pgc-desc">End-to-end IoT &amp; Mobile RF Intrusion Detection System sweeping 126 channels across the 2.4 GHz ISM band with ESP32, NRF24L01+, Firebase telemetry, and a native Android Canvas spectrum visualizer.</p>
+          <p class="pgc-desc">End-to-end IoT &amp; Mobile RF Intrusion Detection System sweeping 126 channels across the
+            2.4 GHz ISM band with ESP32, NRF24L01+, Firebase telemetry, and a native Android Canvas spectrum visualizer.
+          </p>
           <div class="pgc-foot">
-            <div class="pgc-tech"><span>ESP32</span><span>NRF24L01+</span><span>Android</span><span>Firebase</span></div>
+            <div class="pgc-tech"><span>ESP32</span><span>NRF24L01+</span><span>Android</span><span>Firebase</span>
+            </div>
             <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i></div>
           </div>
         </div>
@@ -261,7 +346,8 @@
           <div class="pgc-tag">Full Stack</div>
           <div class="pgc-icon"><i class="fas fa-cart-shopping"></i></div>
           <h3 class="pgc-title">E-Commerce in Java</h3>
-          <p class="pgc-desc">MVC-based full-stack e-commerce app with Java Servlets, JSP &amp; MySQL — user auth, cart, checkout &amp; order management.</p>
+          <p class="pgc-desc">MVC-based full-stack e-commerce app with Java Servlets, JSP &amp; MySQL — user auth, cart,
+            checkout &amp; order management.</p>
           <div class="pgc-foot">
             <div class="pgc-tech"><span>Java</span><span>JSP</span><span>MySQL</span></div>
             <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i></div>
@@ -272,7 +358,8 @@
           <div class="pgc-tag">Web App</div>
           <div class="pgc-icon"><i class="fas fa-seedling"></i></div>
           <h3 class="pgc-title">SMART-KISHAN</h3>
-          <p class="pgc-desc">Smart agriculture platform helping farmers with real-time crop insights, farm management tools &amp; data-driven recommendations.</p>
+          <p class="pgc-desc">Smart agriculture platform helping farmers with real-time crop insights, farm management
+            tools &amp; data-driven recommendations.</p>
           <div class="pgc-foot">
             <div class="pgc-tech"><span>Node.js</span><span>MongoDB</span><span>JS</span></div>
             <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i></div>
@@ -283,29 +370,32 @@
           <div class="pgc-tag">Machine Learning</div>
           <div class="pgc-icon"><i class="fas fa-car"></i></div>
           <h3 class="pgc-title">Car Price Predictor</h3>
-          <p class="pgc-desc">Regression ML model predicting used car prices from historical data — trained in Python, serialized with Pickle for deployment.</p>
+          <p class="pgc-desc">Regression ML model predicting used car prices from historical data — trained in Python,
+            serialized with Pickle for deployment.</p>
           <div class="pgc-foot">
             <div class="pgc-tech"><span>Python</span><span>Scikit-learn</span><span>Flask</span></div>
             <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i></div>
           </div>
         </div>
 
-        <div class="pg-card" data-project="farm" data-cat="ml">
+        <!-- <div class="pg-card" data-project="farm" data-cat="ml">
           <div class="pgc-tag">AI / ML</div>
           <div class="pgc-icon"><i class="fas fa-wheat-awn"></i></div>
           <h3 class="pgc-title">Crop Recommendation System</h3>
-          <p class="pgc-desc">ML system analyzing N, P, K, pH, humidity &amp; rainfall to recommend the optimal crop for cultivation.</p>
+          <p class="pgc-desc">ML system analyzing N, P, K, pH, humidity &amp; rainfall to recommend the optimal crop for
+            cultivation.</p>
           <div class="pgc-foot">
             <div class="pgc-tech"><span>Python</span><span>ML</span><span>Flask</span></div>
             <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i></div>
           </div>
-        </div>
+        </div> -->
 
         <div class="pg-card" data-project="medical" data-cat="ml">
           <div class="pgc-tag">AI / ML</div>
           <div class="pgc-icon"><i class="fas fa-stethoscope"></i></div>
           <h3 class="pgc-title">AI-Patient-Flow</h3>
-          <p class="pgc-desc">AI-powered patient flow management system predicting volumes &amp; optimizing hospital resource allocation to reduce wait times.</p>
+          <p class="pgc-desc">AI-powered patient flow management system predicting volumes &amp; optimizing hospital
+            resource allocation to reduce wait times.</p>
           <div class="pgc-foot">
             <div class="pgc-tech"><span>Python</span><span>AI</span><span>Flask</span></div>
             <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i></div>
@@ -316,7 +406,8 @@
           <div class="pgc-tag">Portfolio</div>
           <div class="pgc-icon"><i class="fas fa-user"></i></div>
           <h3 class="pgc-title">Mukesh Bala Portfolio</h3>
-          <p class="pgc-desc">This very portfolio — dark luxury editorial design, 3D carousel, custom cursor, loader, and real email delivery.</p>
+          <p class="pgc-desc">This very portfolio — dark luxury editorial design, 3D carousel, custom cursor, loader,
+            and real email delivery.</p>
           <div class="pgc-foot">
             <div class="pgc-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
             <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i></div>
@@ -327,34 +418,37 @@
           <div class="pgc-tag">Analytics</div>
           <div class="pgc-icon"><i class="fas fa-chart-pie"></i></div>
           <h3 class="pgc-title">Report Analytics Dashboard</h3>
-          <p class="pgc-desc">Interactive data analytics dashboard with real-time charts, filterable tables, and exportable reports for business intelligence.</p>
+          <p class="pgc-desc">Interactive data analytics dashboard with real-time charts, filterable tables, and
+            exportable reports for business intelligence.</p>
           <div class="pgc-foot">
             <div class="pgc-tech"><span>Python</span><span>Chart.js</span><span>MySQL</span></div>
             <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i></div>
           </div>
         </div>
 
-        <div class="pg-card" data-project="portfolio" data-cat="webapp">
+        <!-- <div class="pg-card" data-project="portfolio" data-cat="webapp">
           <div class="pgc-tag">Web App</div>
           <div class="pgc-icon"><i class="fas fa-user-astronaut"></i></div>
           <h3 class="pgc-title">My Portfolio Dummy</h3>
-          <p class="pgc-desc">Responsive personal portfolio website showcasing projects, skills, achievements, and contact information with smooth animations and modern UI design.</p>
+          <p class="pgc-desc">Responsive personal portfolio website showcasing projects, skills, achievements, and
+            contact information with smooth animations and modern UI design.</p>
           <div class="pgc-foot">
             <div class="pgc-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
             <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i></div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="pg-card" data-project="amazon" data-cat="ml">
+        <!-- <div class="pg-card" data-project="amazon" data-cat="ml">
           <div class="pgc-tag">Machine Learning</div>
           <div class="pgc-icon"><i class="fas fa-robot"></i></div>
           <h3 class="pgc-title">Amazon ML Project</h3>
-          <p class="pgc-desc">Machine learning model for Amazon product recommendation engine using collaborative filtering and deep learning techniques.</p>
+          <p class="pgc-desc">Machine learning model for Amazon product recommendation engine using collaborative
+            filtering and deep learning techniques.</p>
           <div class="pgc-foot">
             <div class="pgc-tech"><span>Python</span><span>TensorFlow</span><span>Pandas</span></div>
             <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i></div>
           </div>
-        </div>
+        </div> -->
 
         <div class="pg-card" data-project="cartify" data-cat="fullstack">
           <div class="pgc-tag">E-Commerce</div>
@@ -367,8 +461,9 @@
           </p>
           <div class="pgc-foot">
             <div class="pgc-tech">
-              <span>React</span><span>Node.js</span><span>MongoDB</span></div>
-              <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i>
+              <span>React</span><span>Node.js</span><span>MongoDB</span>
+            </div>
+            <div class="pgc-arrow"><i class="fas fa-arrow-up-right"></i>
             </div>
           </div>
         </div>
@@ -378,7 +473,8 @@
           <div class="pgc-icon"><i class="fas fa-gavel"></i></div>
           <h3 class="pgc-title">Auction Arena</h3>
           <p class="pgc-desc">
-            A real-time multiplayer sports auction platform featuring live socket-based bidding, strict server-side timers, an AI voice announcer, and automated post-auction squad analysis.
+            A real-time multiplayer sports auction platform featuring live socket-based bidding, strict server-side
+            timers, an AI voice announcer, and automated post-auction squad analysis.
           </p>
           <div class="pgc-foot">
             <div class="pgc-tech">
@@ -395,7 +491,8 @@
           <div class="pgc-icon"><i class="fas fa-ring"></i></div>
           <h3 class="pgc-title">Matrimony Matchmaking App</h3>
           <p class="pgc-desc">
-            A comprehensive matchmaking platform for seamless partner discovery. Features include dynamic user profiles, a dedicated online chat system, connection interest-sending, and robust Cloudinary media management.
+            A comprehensive matchmaking platform for seamless partner discovery. Features include dynamic user profiles,
+            a dedicated online chat system, connection interest-sending, and robust Cloudinary media management.
           </p>
           <div class="pgc-foot">
             <div class="pgc-tech">
@@ -414,10 +511,10 @@
   <div class="pmodal-overlay" id="pModalOverlay">
     <div class="pmodal" id="pModal">
       <button class="pmodal-close" id="pModalClose"><i class="fas fa-xmark"></i></button>
-      <div class="pmodal-tag"   id="pmTag"></div>
+      <div class="pmodal-tag" id="pmTag"></div>
       <h2 class="pmodal-title" id="pmTitle"></h2>
-      <p class="pmodal-short"  id="pmShort"></p>
-      <p class="pmodal-long"   id="pmLong"></p>
+      <p class="pmodal-short" id="pmShort"></p>
+      <p class="pmodal-long" id="pmLong"></p>
       <div class="pmodal-tech-label">Tech Stack</div>
       <div class="pmodal-tech" id="pmTech"></div>
       <a class="pmodal-gh" id="pmLink" target="_blank" rel="noopener">
@@ -435,10 +532,14 @@
           <p class="footer-sub">UI/UX Designer &amp; Full Stack Developer</p>
         </div>
         <div class="footer-socials">
-          <a href="https://github.com/mukeshbala1"          target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/mukeshbala1" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://www.figma.com/@mukeshdesign"       target="_blank" rel="noopener noreferrer" aria-label="Figma"><i class="fab fa-figma"></i></a>
-          <a href="https://dribbble.com/mukesh-bala"          target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+          <a href="https://github.com/mukeshbala1" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i
+              class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/mukeshbala1" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.figma.com/@mukeshdesign" target="_blank" rel="noopener noreferrer" aria-label="Figma"><i
+              class="fab fa-figma"></i></a>
+          <a href="https://dribbble.com/mukesh-bala" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><i
+              class="fab fa-dribbble"></i></a>
         </div>
       </div>
       <div class="footer-divider"></div>
@@ -458,22 +559,23 @@
         btn.classList.add('active');
         const filter = btn.dataset.filter;
         document.querySelectorAll('.pg-card').forEach(card => {
-          const cat  = card.dataset.cat;
+          const cat = card.dataset.cat;
           const show = filter === 'all' || cat === filter || (cat && cat.split(' ').includes(filter));
           if (show) {
             card.style.display = '';
             requestAnimationFrame(() => {
-              card.style.opacity   = '1';
+              card.style.opacity = '1';
               card.style.transform = 'translateY(0)';
             });
           } else {
-            card.style.opacity   = '0';
+            card.style.opacity = '0';
             card.style.transform = 'translateY(16px)';
             setTimeout(() => { card.style.display = 'none'; }, 300);
           }
         });
       });
-    });
+    });  
   </script>
 </body>
+
 </html>
